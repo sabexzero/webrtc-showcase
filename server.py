@@ -130,18 +130,6 @@ async def offer(request):
     pc_id = "PeerConnection(%s)" % uuid.uuid4()
     pcs.add(pc)
 
-    def log_info(msg, *args):
-
-        """
-        Логируем информацию с уникальным идентификатором пир-соединения.
-        Logs information with a unique identifier for the peer connection. This helps in tracking
-        and debugging multiple connections concurrently.
-        """
-    logger.info(pc_id + "Created", *args)
-
-
-    log_info("Created for %s", "offer")
-
     """
     Если указан путь для записи медиа, создаем MediaRecorder, иначе используем MediaBlackhole.
     If a path for recording media is specified, create a MediaRecorder instance; otherwise, 
@@ -179,7 +167,6 @@ async def offer(request):
         Обработчик изменения состояния соединения. Если состояние 'failed', соединение закрывается.
         Handle changes in the connection state. If the state becomes 'failed', the connection is closed.
         """
-        log_info("Connection state is %s", pc.connectionState)
         if pc.connectionState == "failed":
             await pc.close()
             pcs.discard(pc)
@@ -192,7 +179,6 @@ async def offer(request):
         Handle receiving a track. Depending on the track type (audio or video),
         a corresponding class is created to process the track.
         """
-        log_info("Track %s received", track.kind)
 
         if track.kind == "audio":
             pc.addTrack(
@@ -213,7 +199,6 @@ async def offer(request):
             Обработчик завершения трека. Закрываем MediaRecorder, если трек завершен.
             Handle track ending. Close the MediaRecorder if the track ends.
             """
-            log_info("Track %s ended", track.kind)
             await recorder.stop()
 
     """

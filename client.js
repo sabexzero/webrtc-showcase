@@ -1,11 +1,11 @@
 // get DOM elements
-var dataChannelLog = document.getElementById('data-channel'),
+let dataChannelLog = document.getElementById('data-channel'),
     iceConnectionLog = document.getElementById('ice-connection-state'),
     iceGatheringLog = document.getElementById('ice-gathering-state'),
     signalingLog = document.getElementById('signaling-state');
 
 // peer connection
-var pc = null;
+let pc = null;
 
 websocket = new WebSocket('ws://localhost:8080/webrtc');
 
@@ -26,7 +26,7 @@ websocket.onclose = function(event) {
 };
 
 // data channel
-var dc = null, dcInterval = null;
+let dc = null, dcInterval = null;
 
 function createPeerConnection() {
     var config = {
