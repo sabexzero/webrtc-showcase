@@ -1,8 +1,9 @@
 Audio, video and data channel server
 ====================================
 
-This example illustrates establishing audio, video and a data channel with a
-browser. It also performs some image processing on the video frames using
+This repository is an example of working with WebRTC and WebSockets using different development stacks. 
+The examples implement the transmission of video, audio and data channel to the server and their reverse transmission to the client.
+It also performs some image processing on the video frames using
 OpenCV.
 
 Running
