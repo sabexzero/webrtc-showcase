@@ -22,15 +22,15 @@
         <div class="flex flex-row">
             <div class="flex flex-col gap-4 pt-4 w-fit">
                 <h2 class="text-3xl pt-12 text-black">
-                    <button onclick={onOptionsClick()}>
+                    <button onclick="openSection('options-dropdown')">
                         Options ↓
                     </button>
                 </h2>
                 <div class="flex flex-col gap-4" id="options-dropdown">
                     <div class="flex flex-col w-[250px]">
                         <div>
-                            <button onclick={checkDatachannel()}>
-                                <input id="use-datachannel" checked="checked" type="checkbox"/>
+                            <button onclick="checkboxLogic('use-datachannel', 'DC-state')">
+                                <input id="use-datachannel" type="checkbox"/>
                                 <label for="use-datachannel" class="text-black">Use datachannel</label>
                             </button>
                         </div>
@@ -87,8 +87,22 @@
                         </div>
                     </div>
                     <div class="option">
-                        <input id="use-stun" type="checkbox"/>
-                        <label for="use-stun" class="text-black">Use STUN server</label>
+                        <div>
+                            <input id="use-stun" type="checkbox"/>
+                            <label for="use-stun" class="text-black">Use STUN server</label>
+                        </div>
+                        <div>
+                            <button onclick="checkboxLogic('show-ICE-state', 'ICE-state')">
+                                <input id="show-ICE-state" checked="checked" type="checkbox"/>
+                                <label for="show-ICE-state" class="text-black">Show ICE state</label>
+                            </button>
+                        </div>
+                        <div>
+                            <button onclick="checkboxLogic('show-SDP', 'SDP-state')">
+                                <input id="show-SDP" checked="checked" type="checkbox"/>
+                                <label for="show-SDP" class="text-black">Show SDP offer/answer</label>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,23 +125,23 @@
         </div>
 
         <h2 class="text-3xl pt-16 text-black">
-            <button onclick={onLogsClick()}>
+            <button onclick="openSection('logs-dropdown')">
                 Logs ↓
             </button>
         </h2>
         <div id="logs-dropdown" class="flex flex-col gap-4 break-words">
-            <div class="flex flex-col gap-1">
+            <div id="ICE-state" class="flex flex-col gap-1">
                 <p>ICE gathering state: <span id="ice-gathering-state"></span></p>
                 <p>ICE connection state: <span id="ice-connection-state"></span></p>
                 <p>Signaling state: <span id="signaling-state"></span></p>
             </div>
 
-            <div id="data-channel-div">
+            <div id="DC-state">
                 <h2>Data channel:</h2>
                 <pre id="data-channel"></pre>
             </div>
 
-            <div class="flex flex-col gap-1">
+            <div id="SDP-state" class="flex flex-col gap-1">
                 <h3>SPD Offer:</h3>
                 <pre id="offer-sdp"></pre>
 
