@@ -1,2 +1,5 @@
 .idea/*
 /.idea/*
+client/node_modules
+client/dist
+client/package-lock.json
