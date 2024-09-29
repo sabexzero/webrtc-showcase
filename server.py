@@ -43,6 +43,7 @@ class VideoTransformTrack(MediaStreamTrack):
         Receives the track in frame format. Each frame represents a single unit of video content.
         """
         frame = await self.track.recv()
+        print('video recv');
 
         """     
         Дальше можно каким-нибудь образом влиять на изображение, получив изображение кадров, например так:
