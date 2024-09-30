@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Selector from "../Selector";
-import ParamOption from "./ParamOption";
-import MediaSelector from "../MediaSelector.tsx";
+
+import Selector from "@components/Selector";
+import ParamOption from "@components/Options/ParamOption";
+import MediaSelector from "@components//MediaSelector.tsx";
 
 interface OptionProps {
     devices: MediaDeviceInfo[];

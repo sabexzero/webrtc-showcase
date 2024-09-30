@@ -1,5 +1,6 @@
 import React from "react";
-import useParamValues from "../hooks/useParamValues";
+
+import useParamValues from "@hooks/useParamValues";
 
 interface SelectorProps {
     values: string[];

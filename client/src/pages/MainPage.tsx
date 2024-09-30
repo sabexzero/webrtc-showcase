@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import StyledStartButton from "../components/StyledStartButton.tsx";
-import Options from "../components/Options/Options.tsx";
-import Logs from "../components/Logs/Logs.tsx";
-import useStartConnection from "../hooks/useStartConnection.tsx";
+import useStartConnection from "@hooks/useStartConnection.tsx";
+
+import StyledStartButton from "@components/StyledStartButton.tsx";
+import Options from "@components/Options/Options.tsx";
+import Logs from "@components/Logs/Logs.tsx";
 
 const MainPage: React.FC = () => {
     const videoRef = useRef(null);

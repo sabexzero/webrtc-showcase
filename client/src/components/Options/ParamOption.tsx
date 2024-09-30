@@ -7,13 +7,13 @@ interface ParamOptionProps {
     defaultChecked?: boolean;
 }
 
-// Придумать как передавать в контекст
+// TODO: Придумать как передавать в контекст
 
 const ParamOption: React.FC<ParamOptionProps> = ({
     id,
     children,
     label,
-    defaultChecked = false
+    defaultChecked = false,
 }) => {
     const [isChecked, setIsChecked] = useState(defaultChecked);
 
@@ -24,17 +24,15 @@ const ParamOption: React.FC<ParamOptionProps> = ({
                     id={id}
                     defaultChecked={isChecked}
                     type="checkbox"
-                    onClick={() => setIsChecked(prevState => !prevState)}
+                    onClick={() => setIsChecked((prevState) => !prevState)}
                 />
-                <label htmlFor={id} className="text-black">{label}</label>
+                <label htmlFor={id} className="text-black">
+                    {label}
+                </label>
             </div>
-            {isChecked && (
-                <div className="flex flex-col gap-2">
-                    {children}
-                </div>
-            )}
+            {isChecked && <div className="flex flex-col gap-2">{children}</div>}
         </div>
-    )
-}
+    );
+};
 
 export default ParamOption;

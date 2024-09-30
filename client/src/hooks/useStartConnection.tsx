@@ -1,7 +1,8 @@
 import React from "react";
-import useWebSocket from "./useWebSocket.tsx";
-import usePeerConnection from "./usePeerConnection.tsx";
-import useNegotiation from "./useNegotiation.tsx";
+
+import useWebSocket from "@hooks/useWebSocket.tsx";
+import usePeerConnection from "@hooks/usePeerConnection.tsx";
+import useNegotiation from "@hooks/useNegotiation.tsx";
 
 const UseStartConnection = (
     videoRef: React.RefObject<HTMLVideoElement>,
