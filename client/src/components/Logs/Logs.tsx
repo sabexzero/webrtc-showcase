@@ -1,21 +1,44 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
+import { useGlobalStore } from "@store/store.ts";
 
 const Logs: React.FC = () => {
     const [isLogsToggled, setLogsToggle] = useState(true);
 
+    const logs = useGlobalStore((state) => state.logs);
+
     return (
         <>
             <h2 className="text-3xl pt-16 text-black text-left">
-                <button onClick={() => setLogsToggle(prevState => !prevState)}>
+                <button
+                    onClick={() => setLogsToggle((prevState) => !prevState)}
+                >
                     Logs ↓
                 </button>
             </h2>
             {isLogsToggled && (
-                <div id="logs-dropdown" className="flex flex-col gap-4 break-words text-left">
+                <div
+                    id="logs-dropdown"
+                    className="flex flex-col gap-4 break-words text-left"
+                >
                     <div id="ICE-state" className="flex flex-col gap-1">
-                        <p>ICE gathering state: <span id="ice-gathering-state"></span></p>
-                        <p>ICE connection state: <span id="ice-connection-state"></span></p>
-                        <p>Signaling state: <span id="signaling-state"></span></p>
+                        <p>
+                            ICE gathering state:{" "}
+                            <span id="ice-gathering-state">
+                                {logs["ice-gathering-state"]}
+                            </span>
+                        </p>
+                        <p>
+                            ICE connection state:{" "}
+                            <span id="ice-connection-state">
+                                {logs["ice-connection-state"]}
+                            </span>
+                        </p>
+                        <p>
+                            Signaling state:{" "}
+                            <span id="signaling-state">
+                                {logs["signaling-state"]}
+                            </span>
+                        </p>
                     </div>
 
                     <div id="DC-state">
@@ -33,7 +56,7 @@ const Logs: React.FC = () => {
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
-export default Logs
+export default Logs;

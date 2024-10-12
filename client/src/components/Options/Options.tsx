@@ -46,7 +46,7 @@ const Options: React.FC<OptionProps> = ({
                 <div className="flex flex-col gap-4" id="options-dropdown">
                     <ParamOption id="use-datachannel" label="Use datachannel">
                         <Selector
-                            id="use-datachannel"
+                            id="use-datachannel-selector"
                             values={[
                                 "Ordered, reliable",
                                 "Unordered, no retransmissions",
@@ -54,11 +54,7 @@ const Options: React.FC<OptionProps> = ({
                             ]}
                         />
                     </ParamOption>
-                    <ParamOption
-                        id="use-audio"
-                        label="Use audio"
-                        defaultChecked
-                    >
+                    <ParamOption id="use-audio" label="Use audio">
                         <MediaSelector
                             placeholder="Выберите микрофон"
                             options={audioDevices.map((device) => ({

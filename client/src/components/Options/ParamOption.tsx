@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useGlobalStore } from "@store/store.ts";
 
 interface ParamOptionProps {
     label: string;
     id: string;
     children?: React.ReactNode;
-    defaultChecked?: boolean;
 }
 
-// TODO: Придумать как передавать в контекст
-
-const ParamOption: React.FC<ParamOptionProps> = ({
-    id,
-    children,
-    label,
-    defaultChecked = false,
-}) => {
-    const [isChecked, setIsChecked] = useState(defaultChecked);
+const ParamOption: React.FC<ParamOptionProps> = ({ id, children, label }) => {
+    const isChecked = useGlobalStore((state) => state.params[id]);
+    const toggleValue = useGlobalStore((state) => state.toggleParam);
 
     return (
         <div className="flex flex-col w-[250px]">
@@ -24,7 +18,7 @@ const ParamOption: React.FC<ParamOptionProps> = ({
                     id={id}
                     defaultChecked={isChecked}
                     type="checkbox"
-                    onClick={() => setIsChecked((prevState) => !prevState)}
+                    onClick={() => toggleValue(id)}
                 />
                 <label htmlFor={id} className="text-black">
                     {label}
