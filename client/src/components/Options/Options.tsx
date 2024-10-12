@@ -56,7 +56,6 @@ const Options: React.FC<OptionProps> = ({
                     </ParamOption>
                     <ParamOption id="use-audio" label="Use audio">
                         <MediaSelector
-                            placeholder="Выберите микрофон"
                             options={audioDevices.map((device) => ({
                                 label:
                                     device.label ||
@@ -73,7 +72,6 @@ const Options: React.FC<OptionProps> = ({
                     </ParamOption>
                     <ParamOption id="use-video" label="Use video">
                         <MediaSelector
-                            placeholder="Выберите камеру"
                             options={videoDevices.map((device) => ({
                                 label:
                                     device.label || `Camera ${device.deviceId}`,

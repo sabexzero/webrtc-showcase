@@ -20,7 +20,7 @@ export const paramSlice: StateCreator<ParamSlice> = (set) => ({
         [Params["use-audio"]]: false,
         [Params["use-video"]]: true,
         [Params["use-stun"]]: false,
-        [Params["show-ICE-state"]]: false,
+        [Params["show-ICE-state"]]: true,
         [Params["show-SDP"]]: false,
     },
     toggleParam: (id) =>
