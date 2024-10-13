@@ -1,7 +1,8 @@
-import React from "react";
-import useWebSocket from "./useWebSocket.tsx";
-import usePeerConnection from "./usePeerConnection.tsx";
-import useNegotiation from "./useNegotiation.tsx";
+import React, { useState } from "react";
+
+import useWebSocket from "@hooks/useWebSocket.tsx";
+import usePeerConnection from "@hooks/usePeerConnection.tsx";
+import useNegotiation from "@hooks/useNegotiation.tsx";
 
 const UseStartConnection = (
     videoRef: React.RefObject<HTMLVideoElement>,
@@ -15,6 +16,9 @@ const UseStartConnection = (
         websocket: socket,
     });
 
+    const [pause, setPause] = useState<boolean>(false);
+
+    // Хук инициализирует всю логику для создания вебртс соединения
     const start = async () => {
         try {
             const constraints = {
@@ -34,18 +38,40 @@ const UseStartConnection = (
                     pc.addTrack(track, stream);
                 });
 
-                negotiate();
+                // Если изначально передача вебртс не ставилась на паузу
+                // то используется хук для начала переговоров между беком и фронтом.
+                // Если вебртс останавливался паузой, то для возобновления переговоры
+                // не нужны.
+                if (!pause) {
+                    negotiate();
+                }
+
+                // Включаем отправку медиа-треков, не зависимо от того
+                // первичная ли инициализация вебртс или возобновление вебртс
+                pc?.getSenders().forEach((sender) => {
+                    const parameters = sender.getParameters();
+                    parameters.encodings[0].active = true;
+                    sender.setParameters(parameters);
+                });
+
+                setPause(false);
             }
         } catch (err) {
             console.error("Could not acquire media:", err);
         }
     };
 
+    // Хук останавливает передачу медиа-треков по вебртс соединению
     const stop = () => {
         try {
+            // Отключаем отправку медиа-треков
             pc?.getSenders().forEach((sender) => {
-                sender.track?.stop();
+                const parameters = sender.getParameters();
+                parameters.encodings[0].active = false;
+                sender.setParameters(parameters);
             });
+
+            setPause(true);
         } catch (error) {
             console.error(error);
         }

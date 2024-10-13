@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Selector from "../Selector";
-import ParamOption from "./ParamOption";
-import MediaSelector from "../MediaSelector.tsx";
+
+import Selector from "@components/Selector";
+import ParamOption from "@components/Options/ParamOption";
+import MediaSelector from "@components//MediaSelector.tsx";
 
 interface OptionProps {
     devices: MediaDeviceInfo[];
@@ -45,7 +46,7 @@ const Options: React.FC<OptionProps> = ({
                 <div className="flex flex-col gap-4" id="options-dropdown">
                     <ParamOption id="use-datachannel" label="Use datachannel">
                         <Selector
-                            id="use-datachannel"
+                            id="use-datachannel-selector"
                             values={[
                                 "Ordered, reliable",
                                 "Unordered, no retransmissions",
@@ -53,13 +54,8 @@ const Options: React.FC<OptionProps> = ({
                             ]}
                         />
                     </ParamOption>
-                    <ParamOption
-                        id="use-audio"
-                        label="Use audio"
-                        defaultChecked
-                    >
+                    <ParamOption id="use-audio" label="Use audio">
                         <MediaSelector
-                            placeholder="Выберите микрофон"
                             options={audioDevices.map((device) => ({
                                 label:
                                     device.label ||
@@ -76,7 +72,6 @@ const Options: React.FC<OptionProps> = ({
                     </ParamOption>
                     <ParamOption id="use-video" label="Use video">
                         <MediaSelector
-                            placeholder="Выберите камеру"
                             options={videoDevices.map((device) => ({
                                 label:
                                     device.label || `Camera ${device.deviceId}`,

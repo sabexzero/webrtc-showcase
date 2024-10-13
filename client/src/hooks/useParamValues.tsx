@@ -1,5 +1,6 @@
-import { useContext } from "react"
-import { ParamContext } from "../providers/ParamContext"
+import { useContext } from "react";
+
+import { ParamContext } from "@providers/ParamContext";
 
 const useParamValues = () => {
     const context = useContext(ParamContext);
@@ -8,6 +9,6 @@ const useParamValues = () => {
     }
 
     return context;
-}
+};
 
 export default useParamValues;

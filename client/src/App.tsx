@@ -1,15 +1,14 @@
-import './App.css'
+import "./App.css";
 
-import MainPage from './pages/MainPage'
-import { ParamProvider } from './providers/ParamContext';
+import MainPage from "@pages/MainPage";
+import { ParamProvider } from "@providers/ParamContext";
 
 function App() {
-
-  return (
-    <ParamProvider>
-      <MainPage />
-    </ParamProvider>
-  )
+    return (
+        <ParamProvider>
+            <MainPage />
+        </ParamProvider>
+    );
 }
 
-export default App
+export default App;
